@@ -10,10 +10,29 @@ public class Model {
     private int score;
     private int maxField;
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getMaxField() {
+        return maxField;
+    }
+
+    public void setMaxField(int maxField) {
+        this.maxField = maxField;
+    }
+
     //Constructor which prepares playing board
     public Model() {
         resetGameField();
     }
+     public Field[][] getGameField(){
+        return gameField;
+     }
 
     //Merging fields in line if it's possible
     private boolean mergeFields(Field[] fields) {
@@ -24,10 +43,11 @@ public class Model {
                 continue;
             if (i < FIELD_SIZE - 1 && fields[i].getValue() == fields[i + 1].getValue()) {
                 int newValue = fields[i].getValue() * 2;
-                if (newValue > maxField) {
-                    maxField = newValue;
+                if (newValue > getMaxField()) {
+                     setMaxField(newValue);
+
                 }
-                score += newValue;
+                setScore(getScore() + newValue);
                 list.addLast(new Field(newValue));
                 fields[i + 1].setValue(0);
                 result = true;
@@ -51,6 +71,7 @@ public class Model {
                 if(i != position){
                     fields[position] = fields[i];
                     fields[i] = new Field();
+                    result = true;
                 }
                 position++;
             }
@@ -151,7 +172,7 @@ public class Model {
     }
 
     private List<Field> getEmptyFields() {
-        List<Field> list = new ArrayList<>();
+        final List<Field> list = new ArrayList<>();
         for (Field[] field : gameField) {
             for (Field f : field){
                 if(f.isEmpty())

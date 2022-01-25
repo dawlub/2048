@@ -33,11 +33,11 @@ public class Field {
     public Color getFieldColor() {
         switch (value) {
             case 0:
-                return new Color(0xD9BB96);
+                return new Color(0xDCC7AC);
             case 2:
-                return new Color(0xC7BCB0);
+                return new Color(0xD9BC9B);
             case 4:
-                return new Color(0xECD6AF);
+                return new Color(0xEFCF97);
             case 8:
                 return new Color(0xCE9869);
             case 16:
